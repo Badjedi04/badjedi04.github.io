@@ -268,5 +268,100 @@ Let’s connect to discuss how my skills can contribute to your team’s success
 		// Get the element with id="defaultOpen" and click on it
 		document.getElementById("defaultOpen").click();
 	</script>
+	<!-- Add this to the bottom of your HTML body, just before the closing </body> tag -->
+<button id="chatbotButton" class="chatbot-btn">Chat</button>
+
+<!-- The Modal -->
+<div id="chatModal" class="chat-modal">
+  <div class="chat-modal-content">
+    <span class="close-btn" id="closeChat">&times;</span>
+    <h2>Chat with Us</h2>
+    <div id="chatbox">
+      <!-- You can embed an actual chatbot here (like ChatGPT or Dialogflow) -->
+      <p>Hi! How can I assist you today?</p>
+    </div>
+    <!-- Add chatbot interface (e.g., chatbox or integration here) -->
+  </div>
+</div>
+
+<style>
+  /* Chatbot button styles */
+  .chatbot-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #0084ff;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  /* Modal (Chat Window) styles */
+  .chat-modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Black background with transparency */
+  }
+
+  .chat-modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%;
+  }
+
+  /* Close button styles */
+  .close-btn {
+    color: #aaa;
+    font-size: 30px;
+    font-weight: bold;
+    position: absolute;
+    top: 5px;
+    right: 15px;
+  }
+
+  .close-btn:hover,
+  .close-btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  #chatbox {
+    height: 300px;
+    overflow-y: scroll;
+    background-color: #f1f1f1;
+    padding: 10px;
+  }
+</style>
+
+<script>
+  // Open the chatbot modal
+  document.getElementById("chatbotButton").onclick = function() {
+    document.getElementById("chatModal").style.display = "block";
+  }
+
+  // Close the chatbot modal
+  document.getElementById("closeChat").onclick = function() {
+    document.getElementById("chatModal").style.display = "none";
+  }
+
+  // Close the modal if the user clicks outside of it
+  window.onclick = function(event) {
+    if (event.target == document.getElementById("chatModal")) {
+      document.getElementById("chatModal").style.display = "none";
+    }
+  }
+</script>
+
 </body>
 </html>
