@@ -268,7 +268,7 @@ Let’s connect to discuss how my skills can contribute to your team’s success
 		// Get the element with id="defaultOpen" and click on it
 		document.getElementById("defaultOpen").click();
 	</script>
-	<!-- Add this to the bottom of your HTML body, just before the closing </body> tag -->
+<!-- Add this to the bottom of your HTML body, just before the closing </body> tag -->
 <button id="chatbotButton" class="chatbot-btn">Chat</button>
 
 <!-- The Modal -->
@@ -277,10 +277,13 @@ Let’s connect to discuss how my skills can contribute to your team’s success
     <span class="close-btn" id="closeChat">&times;</span>
     <h2>Chat with Us</h2>
     <div id="chatbox">
-      <!-- You can embed an actual chatbot here (like ChatGPT or Dialogflow) -->
+      <!-- Initial message -->
       <p>Hi! How can I assist you today?</p>
     </div>
-    <!-- Add chatbot interface (e.g., chatbox or integration here) -->
+    <div id="chatInput">
+      <input type="text" id="userMessage" placeholder="Type a message..." />
+      <button id="sendMessageBtn">Send</button>
+    </div>
   </div>
 </div>
 
@@ -341,6 +344,34 @@ Let’s connect to discuss how my skills can contribute to your team’s success
     overflow-y: scroll;
     background-color: #f1f1f1;
     padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  #chatInput {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #userMessage {
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  #sendMessageBtn {
+    padding: 10px;
+    background-color: #0084ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  #sendMessageBtn:hover {
+    background-color: #005f99;
   }
 </style>
 
@@ -361,6 +392,26 @@ Let’s connect to discuss how my skills can contribute to your team’s success
       document.getElementById("chatModal").style.display = "none";
     }
   }
+
+  // Send the user's message when they click "Send"
+  document.getElementById("sendMessageBtn").onclick = function() {
+    var userMessage = document.getElementById("userMessage").value;
+    if (userMessage.trim() !== "") {
+      var chatbox = document.getElementById("chatbox");
+      var newMessage = document.createElement("p");
+      newMessage.textContent = "You: " + userMessage;
+      chatbox.appendChild(newMessage);
+      document.getElementById("userMessage").value = ""; // Clear the input field
+      chatbox.scrollTop = chatbox.scrollHeight; // Scroll to the bottom
+    }
+  }
+
+  // Allow the user to press Enter to send the message
+  document.getElementById("userMessage").addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+      document.getElementById("sendMessageBtn").click();
+    }
+  });
 </script>
 
 </body>
